@@ -25,7 +25,7 @@ node {
    }
    
    stage('Run Container on Dev Server'){
-     def dockerRun = 'docker stop markus625/helloworldcicd;docker image rm -f markus625/helloworldcicd;docker run -p 8080:8080 -d markus625/helloworldcicd'
+     def dockerRun = 'docker stop $(docker ps -q --filter ancestor=markus625/helloworldcicd);docker image rm -f markus625/helloworldcicd;docker run -p 8080:8080 -d markus625/helloworldcicd'
      sshagent(['dev-server']) {
        sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.85.28 ${dockerRun}"
      }
