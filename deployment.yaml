@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: helloworldcicd
+spec:
+  replicas: 1 
+  template:
+    metadata:
+      labels:
+        app: helloworldcicd
+    spec:
+      containers:
+       - name: helloworldcicd
+         image: markus625/helloworldcicd
+         ports: 
+         - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: helloworldcicd-service
+spec:
+  selector:
+    app: helloworldcicd
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 8080
+  type: LoadBalancer
