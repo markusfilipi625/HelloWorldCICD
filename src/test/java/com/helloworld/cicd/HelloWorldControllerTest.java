@@ -40,7 +40,7 @@ public class HelloWorldControllerTest {
 	@Test
 	public void sayHello() throws Exception {
 		mockMvc.perform(get("/hello")).andExpect(status().isOk())
-				.andExpect(content().string(containsString("Hello people")));
+				.andExpect(content().string(containsString("Hello folks message")));
 	}
 
 	@Test
